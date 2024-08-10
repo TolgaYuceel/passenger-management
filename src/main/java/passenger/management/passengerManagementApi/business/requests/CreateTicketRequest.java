@@ -1,5 +1,7 @@
 package passenger.management.passengerManagementApi.business.requests;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,8 +10,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateTicketRequest {
+	@NotNull
+	@NotBlank
 	private int passenger_id;
+	
+	@NotNull
+	@NotBlank
 	private int seat_number;
+	
+	@NotNull
+	@NotBlank
 	private String gate;
+	
+	@NotNull
+	@NotBlank
 	private String boarding_time;	
 }

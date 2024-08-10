@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import passenger.management.passengerManagementApi.business.abstracts.PassengerService;
 import passenger.management.passengerManagementApi.business.requests.CreatePassengerRequest;
-import passenger.management.passengerManagementApi.business.requests.DeletePassengerRequest;
 import passenger.management.passengerManagementApi.business.requests.UpdatePassengerRequest;
 import passenger.management.passengerManagementApi.business.responses.GetAllPassengersResponse;
 import passenger.management.passengerManagementApi.business.responses.GetPassengerByIdResponse;
@@ -34,23 +33,23 @@ public class PassengerController {
 		return passengerService.getAll();
 	}
 	
-	@DeleteMapping("/delete")
-	public void delete(@RequestBody DeletePassengerRequest deletePassengerRequest) {
-		passengerService.delete(deletePassengerRequest);
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable int id) {
+		passengerService.delete(id);
 	}
 	
-	@PostMapping("/add")
+	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void add(@RequestBody CreatePassengerRequest createPassengerRequest) {
 		passengerService.add(createPassengerRequest);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping
 	public void update(@RequestBody UpdatePassengerRequest updatePassengerRequest) {
 		passengerService.update(updatePassengerRequest);
 	}
 	
-	@GetMapping("/getById/{id}")
+	@GetMapping("/{id}")
 	public GetPassengerByIdResponse getById(@PathVariable int id) {
 		return passengerService.getById(id);
 	}
