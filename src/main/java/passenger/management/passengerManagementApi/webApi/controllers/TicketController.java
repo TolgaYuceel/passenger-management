@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import passenger.management.passengerManagementApi.business.abstracts.TicketService;
 import passenger.management.passengerManagementApi.business.requests.CreateTicketRequest;
+import passenger.management.passengerManagementApi.business.requests.UpdateTicketRequest;
 import passenger.management.passengerManagementApi.business.responses.GetAllTicketsResponse;
+import passenger.management.passengerManagementApi.business.responses.GetTicketByIdResponse;
 
 @RestController
 @RequestMapping("/api/tickets")
@@ -42,5 +45,15 @@ public class TicketController {
     @ResponseStatus(code = HttpStatus.OK)
     public void delete(@PathVariable int id) {
     	this.ticketService.delete(id);
+    }
+    
+    @GetMapping("/{id}")
+	public GetTicketByIdResponse getById(@PathVariable int id) {
+		return this.ticketService.getById(id);
+	}
+    
+    @PutMapping()
+    public void update(@RequestBody UpdateTicketRequest updateTicketRequest) {
+    	this.ticketService.update(updateTicketRequest);
     }
 }
